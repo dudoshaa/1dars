@@ -434,6 +434,8 @@ body {
   padding: 24px;
   margin-bottom: 3.2rem;
   border-radius: 0.8rem;
+  max-height: 350px;
+  overflow-y: auto;
 }
 .order-confirmed__item {
   display: flex;
@@ -508,6 +510,7 @@ body {
   color: var(--color-rose-900);
 }
 .order__price {
+ 
   font-weight: 700;
   font-size: var(--text-preset-2-size);
   line-height: 100%;
