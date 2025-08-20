@@ -1,7 +1,7 @@
 import React from "react";
 import { formatNumber } from "../utils";
 import { useDispatch } from "react-redux";
-import { clearAmount } from "../app/features/dessertSlice";
+import {removeDessert } from "../app/features/dessertSlice";
 
 function DessertItem({ dessert }) {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function DessertItem({ dessert }) {
         </div>
       </div>
       <button
-        onClick={() => dispatch(clearAmount(dessert.id))}
+        onClick={() => dispatch(removeDessert(dessert.id))}
         className="dessert-item__remove"
       >
         <svg

@@ -27,7 +27,7 @@ function Modal({ setShowModal }) {
           <ul className="order-confirmed__list">
             {desserts.map((dessert) => {
               return (
-                <li className="order-confirmed__item">
+                <li key={dessert.id} className="order-confirmed__item">
                   <div className="order-confirmed__body">
                     <img
                       className="order-confirmed__image"

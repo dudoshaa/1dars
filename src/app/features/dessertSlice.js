@@ -27,10 +27,6 @@ const dessertSlice = createSlice({
       item.amount -= 1;
       dessertSlice.caseReducers.calculateTotal(state);
     },
-    clearAmount: (state, { payload }) => {
-      state.desserts = state.desserts.filter((item) => item.id !== payload);
-      dessertSlice.caseReducers.calculateTotal(state);
-    },
     clearDessert:(state)=>{
       state.desserts=[]
       dessertSlice.caseReducers.calculateTotal(state);
