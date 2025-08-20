@@ -10,18 +10,51 @@ const dessertSlice = createSlice({
   initialState,
   reducers: {
     addDessert: (state, { payload }) => {
-      dessertSlice.caseReducers.calculateTotal();
+      state.desserts.push({ ...payload, amount: 1 });
+      dessertSlice.caseReducers.calculateTotal(state);
     },
     removeDessert: (state, { payload }) => {
-      dessertSlice.caseReducers.calculateTotal();
+      state.desserts = state.desserts.filter((item) => item.id !== payload);
+      dessertSlice.caseReducers.calculateTotal(state);
     },
-    clearDessert: (state, { payload }) => {
-      dessertSlice.caseReducers.calculateTotal();
+    incrementAmount: (state, { payload }) => {
+      const item = state.desserts.find((item) => item.id == payload);
+      item.amount += 1;
+      dessertSlice.caseReducers.calculateTotal(state);
+    },
+    decrementAmount: (state, { payload }) => {
+      const item = state.desserts.find((item) => item.id === payload);
+      item.amount -= 1;
+      dessertSlice.caseReducers.calculateTotal(state);
+    },
+    clearAmount: (state, { payload }) => {
+      state.desserts = state.desserts.filter((item) => item.id !== payload);
+      dessertSlice.caseReducers.calculateTotal(state);
+    },
+    clearDessert:(state)=>{
+      state.desserts=[]
+      dessertSlice.caseReducers.calculateTotal(state);
     },
     calculateTotal: (state) => {
+      let price = 0;
+      let amount = 0;
+
+      state.desserts.forEach((item) => {
+        price += item.amount * item.price;
+        amount += item.amount;
+      });
+      state.totalAmount = amount;
+      state.totalPrice = price;
     },
   },
 });
 
-export const { addDessert, removeDessert, clearDessert } = dessertSlice.actions;
-export default  dessertSlice.reducer
+export const {
+  addDessert,
+  removeDessert,
+  clearAmount,
+  clearDessert,
+  incrementAmount,
+  decrementAmount,
+} = dessertSlice.actions;
+export default dessertSlice.reducer;
